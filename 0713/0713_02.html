@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="mb-3 mt-3">
+                    <label for="num1">num1:</label>
+                    <input type="number" class="form-control" id="num1" name="num1" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mb-3 mt-3">
+                    <label for="num2">num2:</label>
+                    <input type="number" class="form-control" id="num2" name="num2" value="0">
+                </div>
+            </div>
+            <div class="col">
+                <div class="mt-3">
+                    <label for="myOption">myOption:</label>
+                    <select class="form-select" id="myOption" name="myOption">
+                        <option selected value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="d-grid gap-2">
+                    <button id="myBtn" class="btn btn-primary" type="button">Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <p id="myP"></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
+        integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        // JQUERY 放在ready內
+        // 原本的方法
+        $(document).ready(function () {
+            //綁定
+            const num1 = $('#num1');
+            const num2 = $('#num2');
+            const myOption = $('#myOption');
+            const myBtn = $('#myBtn');
+            const myP = $('#myP');
+
+            function calculate() {
+                // 抓新值
+                let num1Value = Number(num1.val());
+                let num2Value = Number(num2.val());
+                let myOptionValue = myOption.val();
+                console.log('num1Value', num1Value);
+                console.log('num2Value', num2Value);
+                console.log('myOptionValue', myOptionValue);
+                let result = 0;
+
+                switch (myOptionValue) {
+                    case '+':
+                        result = num1Value + num2Value;
+                        break;
+                    case '-':
+                        result = num1Value - num2Value;
+                        break;
+                    case '*':
+                        result = num1Value * num2Value;
+                        break;
+                    case '/':
+                        result = num1Value / num2Value;
+                        break;
+
+
+                    default:
+                        result = "option error";
+                        break;
+                }
+                console.log('result', result);
+
+                let data = {
+                    'num1': num1Value,
+                    'num2': num2Value,
+                    'myOption': myOptionValue,
+                    'result': result,
+                }
+                return data;
+            }
+
+            function showResult() {
+                let resultData = calculate();
+                // console.log('resultData', resultData);
+                let resultText = `
+                ${resultData.num1} 
+                ${resultData.myOption} 
+                ${resultData.num2} = 
+                ${resultData.result}`;
+                myP.text(resultText);
+
+            }
+
+
+            num1.change(function () {
+                calculate();
+                // let num1Value = num1.val();
+                // console.log('num1Value', num1Value);
+
+            });
+
+            num2.change(function () {
+                calculate();
+                // let num2Value = num2.val();
+                // console.log('num2Value', num2Value);
+            });
+
+            myOption.change(function () {
+                calculate();
+                // let myOptionValue = myOption.val();
+                // console.log('myOptionValue', myOptionValue);
+            });
+
+            myBtn.click(function () {
+                console.log('myBtn ok');
+                showResult();
+                // let myOptionValue = myOption.val();
+                // console.log('myOptionValue', myOptionValue);
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>
