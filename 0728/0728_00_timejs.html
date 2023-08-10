@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>數位時鐘</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="clock-container">
+        <div class="clock">
+            <div class="digit" id="hours">00</div>
+            <div class="divider">:</div>
+            <div class="digit" id="minutes">00</div>
+            <div class="divider">:</div>
+            <div class="digit" id="seconds">00</div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript部分保持不變
+        function updateClock() {
+            const currentTime = new Date();
+            const hours = String(currentTime.getHours()).padStart(2, '0');
+            const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+            const seconds = String(currentTime.getSeconds()).padStart(2, '0');
+
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+
+</html>

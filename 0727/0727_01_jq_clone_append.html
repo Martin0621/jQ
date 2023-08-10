@@ -80,12 +80,16 @@
             });
 
             cloneBtn.click(function () {
-                let nowRow = myContainer.find('.row').first();
-                let nowRowClone = nowRow.clone(true);
+                // let nowRow = myContainer.find('.row').first();
+                // let nowRowClone = nowRow.clone(true);
                 // let nowRowClone = nowRow.clone();
                 // append(content)
                 // contend.appendTo()
-                myContainer.append(nowRowClone);
+                // myContainer.append(nowRowClone);
+
+                // 一行解決 但可讀性比較差 要小心
+                myContainer.find('.row').first().clone(true).appendTo(myContainer);
+
 
                 // 雖然我有clone(true) 我想要改寫
                 // clone 格式 我自己寫event
